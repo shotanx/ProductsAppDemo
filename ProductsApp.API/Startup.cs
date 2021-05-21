@@ -60,6 +60,13 @@ namespace ProductsApp.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(n =>
+            {
+                n.AllowAnyOrigin()
+                 .AllowAnyHeader()
+                 .AllowAnyMethod();
+            });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
