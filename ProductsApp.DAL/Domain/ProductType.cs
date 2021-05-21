@@ -1,12 +1,10 @@
-﻿using System;
+﻿using ProductsApp.DAL.Helpers;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductsApp.DAL.Domain
 {
-    public class ProductType
+    public class ProductType : IDbEntity
     {
         public Guid ID { get; set; }
         public string ProductTypeName { get; set; }
