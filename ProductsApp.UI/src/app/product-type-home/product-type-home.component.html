@@ -1,0 +1,4 @@
+<div>
+    <app-product-type class="productType" [dataFromParent]="productTypes" (emitSelectedRow)="getSelectedRow($event)"></app-product-type>
+    <app-product-list class="productList" [selectedRow]="selectedRow"></app-product-list>
+</div>

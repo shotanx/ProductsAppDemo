@@ -36,6 +36,7 @@ namespace ProductsApp.API.IoC
 
         private static void AddRepositories(IServiceCollection services)
         {
+            services.AddScoped<DbContext, ProductsAppContext>();
             services.AddScoped<IProductRepository, ProductRepository>();
         }
 

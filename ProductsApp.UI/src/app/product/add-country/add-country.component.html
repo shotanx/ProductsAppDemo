@@ -1,0 +1,40 @@
+<div class="wrapper">
+    <mat-card class="popup-card-container">
+        <mat-card-content>
+            <mat-panel-title class="popup-panel">
+                <p class="header-font" style="font-weight: bold">
+                    ქვეყნის დამატება
+                </p>
+            </mat-panel-title>
+            <hr style="margin-bottom: 15px" />
+            <form [formGroup]="addCountryForm">
+                <!-- <mat-form-field
+            class="mat-from-field-wrapper-class"
+            style="margin-top: 5px"
+          >
+            <p>ტექსტი</p>
+          </mat-form-field> -->
+                <mat-form-field class="mat-from-field-wrapper-class" style="margin-top: 5px">
+                    <mat-label>ქვეყნის დასახელება</mat-label>
+                    <input matInput formControlName="countryName" />
+                </mat-form-field>
+
+            </form>
+        </mat-card-content>
+
+        <mat-card-footer>
+            <div style="display: flex; justify-content: flex-end; margin-top: 30px">
+                <button mat-raised-button color="primary" title="შენახვა" (click)="onSavedClose()"
+                    class="save-green-button" style="margin-right: 10px">
+                    <mat-icon class="material-icons">save</mat-icon>
+                </button>
+
+
+                <button mat-raised-button color="warn" (click)="onClose()" title="დახურვა" class="close-red-button">
+                    <mat-icon class="material-icons">close</mat-icon>
+                </button>
+            </div>
+            <br />
+        </mat-card-footer>
+    </mat-card>
+</div>

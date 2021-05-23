@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ProductsApp.BLL.Models
 {
@@ -8,6 +9,6 @@ namespace ProductsApp.BLL.Models
         public string ProductTypeName { get; set; }
         public Guid? ParentID { get; set; }
 
-
+        public List<ProductTypeModel> Children { get; set; }
     }
 }

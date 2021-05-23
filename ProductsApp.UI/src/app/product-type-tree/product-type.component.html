@@ -1,0 +1,67 @@
+<div style="padding: 15px">
+<button class="btn" matTooltip="დამატება"
+    (click)="addProducType()" mat-raised-button color="primary">
+    <mat-icon class="material-icons">add</mat-icon>
+</button>
+<button (click)="addProducType()" mat-raised-button color="primary" class="btn btn-sm btn-info edit"
+    matTooltip="რედაქტირება">
+    <mat-icon class="material-icons">edit</mat-icon>
+</button>
+
+<button mat-raised-button color="warn" class="btn btn-sm btn-danger delete" matTooltip="წაშლა" (click)="onDeleteProductType()">
+    <mat-icon class="material-icons">delete</mat-icon>
+</button>
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <!-- This is the tree node template for leaf nodes -->
+    <mat-tree-node matTreeNodePadding matTreeNodePaddingIndent="10" *matTreeNodeDef="let node"
+    (click)="activeNode = node; selectNode(node)" [ngClass]="{ 'background-highlight': activeNode === node }">
+        <!-- use a disabled button to provide padding for tree leaf -->
+        <button mat-icon-button disabled></button>
+        <span class="txtColor">{{node.productTypeName}}</span>
+    </mat-tree-node>
+    <!-- This is the tree node template for expandable nodes -->
+    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="10"
+    (click)="activeNode = node; selectNode(node)" [ngClass]="{ 'background-highlight': activeNode === node }">
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.productTypeName">
+            <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+        </button>
+        <span class="txtColor">{{node.productTypeName}}</span>
+    </mat-tree-node>
+</mat-tree>
+</div>
+
+
+
+
+
+
+
+<!-- <table mat-table [dataSource]="dataSource" class="table borderless" striped="true"
+    style="width: 100%; margin-top: 10px; padding: 15px">
+    <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef class="head-body"></th>
+        <td mat-cell *matCellDef="let row">
+            <button mat-raised-button color="primary"
+                (click)="expandData === row ? (expandData = null) : (expandData = row)">
+                <mat-icon>
+                    {{
+                    expandData !== row
+                    ? "keyboard_arrow_right"
+                    : "keyboard_arrow_down"
+                    }}
+                </mat-icon>
+            </button>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="head-body"></th>
+        <td mat-cell *matCellDef="let row"><a (click)="testMethod(row)">{{'&nbsp;'.repeat(row.depth) }}<span [innerHTML]="row.symbol"></span>
+            {{ row.productTypeName }}</a></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table> -->

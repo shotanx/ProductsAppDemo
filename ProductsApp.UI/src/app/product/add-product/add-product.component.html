@@ -1,0 +1,77 @@
+<div class="wrapper">
+    <mat-card class="popup-card-container">
+        <mat-card-content>
+            <mat-panel-title class="popup-panel">
+                <p class="header-font" style="font-weight: bold">
+                    პროდუქტის დამატება
+                </p>
+            </mat-panel-title>
+            <hr style="margin-bottom: 15px" />
+            <form [formGroup]="addProductForm">
+                <!-- <mat-form-field
+            class="mat-from-field-wrapper-class"
+            style="margin-top: 5px"
+          >
+            <p>ტექსტი</p>
+          </mat-form-field> -->
+                <mat-form-field class="mat-from-field-wrapper-class" style="margin-top: 5px">
+                    <mat-label>პროდუქტის კოდი</mat-label>
+                    <input matInput formControlName="productCode" />
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>პროდუქტის დასახელება</mat-label>
+                    <input matInput formControlName="productName" />
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>პროდუქტის ფასი</mat-label>
+                    <input matInput formControlName="productPrice" />
+                </mat-form-field>
+                <br>
+                <div style="display: flex; justify-content: space-between">
+                    <mat-form-field style="width: 55%">
+                        <mat-label>ქვეყანა</mat-label>
+                        <mat-select formControlName="countryID">
+                            <mat-option *ngFor="let country of countries" [value]="country.id">
+                                {{ country.countryName }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button (click)="addNewCountry()">ახალი ქვეყნის დამატება</button>
+                </div>
+                <div style="display: flex; justify-content: space-between">
+                    <mat-form-field style="width: 40%">
+                        <mat-label>თარიღიდან</mat-label>
+                        <input matInput [matDatepicker]="startDate" placeholder="თვე/დღე/წელი"
+                            formControlName="startDate" />
+                        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                        <mat-datepicker #startDate></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field style="width: 40%">
+                        <mat-label>თარიღამდე</mat-label>
+                        <input matInput [matDatepicker]="endDate" placeholder="თვე/დღე/წელი"
+                            formControlName="endDate" />
+                        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                        <mat-datepicker #endDate></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+            </form>
+        </mat-card-content>
+
+        <mat-card-footer>
+            <div style="display: flex; justify-content: flex-end; margin-top: 30px">
+                <button mat-raised-button color="primary" title="შენახვა" (click)="onSavedClose()"
+                    class="save-green-button" style="margin-right: 10px">
+                    <mat-icon class="material-icons">save</mat-icon>
+                </button>
+
+
+                <button mat-raised-button color="warn" (click)="onClose()" title="დახურვა" class="close-red-button">
+                    <mat-icon class="material-icons">close</mat-icon>
+                </button>
+            </div>
+            <br />
+        </mat-card-footer>
+    </mat-card>
+</div>

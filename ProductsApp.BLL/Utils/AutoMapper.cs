@@ -12,6 +12,21 @@ namespace ProductsApp.BLL.Utils
             CreateMap<ProductTypeModel, ProductType>()
                 .ForMember(x => x.ID, y => y.Ignore())
                 .ForMember(x => x.DateCreated, y => y.Ignore());
+
+            CreateMap<Country, CountryModel>();
+            CreateMap<CountryModel, Country>()
+                .ForMember(x => x.ID, y => y.Ignore())
+                .ForMember(x => x.DateCreated, y => y.Ignore());
+
+            CreateMap<Product, ProductModel>();
+            CreateMap<ProductModel, Product>()
+                .ForMember(x => x.ID, y => y.Ignore())
+                .ForMember(x => x.DateCreated, y => y.Ignore());
+
+            CreateMap<Country, CountryModel>();
+            CreateMap<CountryModel, Country>()
+                .ForMember(x => x.ID, y => y.Ignore())
+                .ForMember(x => x.DateCreated, y => y.Ignore());
         }
     }
 }

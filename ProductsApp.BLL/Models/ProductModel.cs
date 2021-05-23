@@ -1,10 +1,13 @@
-﻿using ProductsApp.DAL.Helpers;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ProductsApp.DAL.Domain
+namespace ProductsApp.BLL.Models
 {
-    public class Product : IDbEntity
+    public class ProductModel
     {
         public Guid ID { get; set; }
         [Required]
@@ -16,11 +19,5 @@ namespace ProductsApp.DAL.Domain
         public Guid CountryID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime? DateChanged { get; set; }
-        public DateTime? DateDeleted { get; set; }
-
-        public Country Country { get; set; }
-        public ProductType ProductType { get; set; }
     }
 }
