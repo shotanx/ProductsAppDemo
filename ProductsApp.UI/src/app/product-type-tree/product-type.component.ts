@@ -8,6 +8,8 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { ProductTypeAddPopupComponent } from "./_popups/product-type-add-popup/product-type-add.component";
 import { MatDialog } from "@angular/material/dialog";
 import { ProductTypeDeletePopupComponent } from "./_popups/product-type-delete-popup/product-type-delete.component";
+import { ToastrService } from "ngx-toastr";
+import { ProductTypeEditPopupComponent } from "./_popups/product-type-edit-popup/product-type-edit.component";
 
 interface ProductType {
     id: string;
@@ -85,6 +87,8 @@ export class ProductTypeComponent implements OnInit {
     selectedRow;
     @Output() emitSelectedRow: EventEmitter<any> = new EventEmitter<any>();
     constructor(private dialog: MatDialog,
+        private toastr: ToastrService,
+        private productService: ProductService,
         private iterableDiffers: IterableDiffers
     ) {
         this.iterableDiffer = iterableDiffers.find([]).create(null);
@@ -144,15 +148,43 @@ export class ProductTypeComponent implements OnInit {
         }
         const dialogRef = this.dialog.open(ProductTypeAddPopupComponent, { data });
         dialogRef.afterClosed().subscribe((res) => {
-            console.log("test3");
-            console.log(res);
-            console.log("test3");
+            this.productService.getProductTypes().subscribe((res) => this.dataFromParent = res );
             // let changedData = this.hospitalPaperTable.data;
             // if (res) {
             //     changedData.push(res);
             // }
             // this.hospitalPaperTable.data = changedData;
         });
+    }
+
+    editProducType() {
+        if (!this.selectedRow) {
+            this.toastr.error('რედაქტირებისთვის საჭიროა რომ აირჩიოთ პროდუქტის ტიპი.');
+        }
+
+        const data = {
+            selectedRow: this.selectedRow
+        }
+        const dialogRef = this.dialog.open(ProductTypeEditPopupComponent, { data });
+        dialogRef.afterClosed().subscribe((res) => {
+            this.productService.getProductTypes().subscribe((res) => this.dataFromParent = res );
+            // let changedItem = this.dataFromParent.filter(x => x.id = this.selectedRow.id)[0];
+
+            // const index = changedData.indexOf(this.selectedRow);
+            // console.log("test21");
+            // console.log(changedData);
+            // console.log(this.selectedRow);
+            // console.log("test21");
+            // console.log(index);
+            // changedData[index] = res;
+            // this.dataFromParent = changedData;
+            // this.selectedRow = null;
+            // this.ngDoCheck();
+            // console.log("test3");
+            // console.log(res);
+            // console.log("test3");
+        });
+
     }
 
     onDeleteProductType() {
@@ -166,34 +198,7 @@ export class ProductTypeComponent implements OnInit {
             })
             .afterClosed()
             .subscribe((res) => {
-              // if (res.delete == true) {
-              //   this.serviceGroupService.deleteServiceGroupUpdate(row.id).subscribe(
-              //     (res) => {
-              //       this.deleted(this.dataSource, row.id);
-              //       this.table.renderRows();
-              //       this.toastr.success('მომსახურების ჯგუფი წარმატებით წაიშალა.');
-              //       if (this.dataSource.data.length == 0) {
-              //         this.hideTable = true;
-              //       }
-              //     },
-              //     (error) => {
-              //       if (errorRegex.test(error.error)) {
-              //         this.toastr.error(error.error);
-              //       } else {
-              //         this.toastr.error(
-              //           'მომსახურების ჯგუფის წაშლისას დაფიქსირდა შეცდომა'
-              //         );
-              //       }
-                    // if (error.error.slice(0, 12) == 'სერვისჯგუფზე') {
-                    //   this.toastr.error(error.error);
-                    // } else {
-                    //   this.toastr.error(
-                    //     'მომსახურების ჯგუფის წაშლისას დაფიქსირდა შეცდომა.'
-                    //   );
-                    // }
-              //     }
-              //   );
-              // }
+                this.productService.getProductTypes().subscribe((res) => this.dataFromParent = res );
             });
         }
       }

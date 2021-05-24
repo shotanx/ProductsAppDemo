@@ -56,7 +56,20 @@ export class ProductService {
 
   updateProduct(model) {
     return this.http.post(
-      this.baseUrl + 'api/Product/AddProduct',
+      this.baseUrl + 'api/Product/UpdateProduct',
+      model
+    );
+  }
+
+  deleteProduct(id: string) {
+    return this.http.delete(
+      this.baseUrl + "api/Product/DeleteProduct/" + id
+    );
+  }
+
+  editProductType(model) {
+    return this.http.post(
+      this.baseUrl + 'api/Product/EditProductType',
       model
     );
   }

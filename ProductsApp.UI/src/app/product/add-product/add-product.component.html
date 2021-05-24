@@ -2,8 +2,11 @@
     <mat-card class="popup-card-container">
         <mat-card-content>
             <mat-panel-title class="popup-panel">
-                <p class="header-font" style="font-weight: bold">
+                <p *ngIf="!dataForEdit" class="header-font" style="font-weight: bold">
                     პროდუქტის დამატება
+                </p>
+                <p *ngIf="dataForEdit" class="header-font" style="font-weight: bold">
+                    პროდუქტის რედაქტირება
                 </p>
             </mat-panel-title>
             <hr style="margin-bottom: 15px" />

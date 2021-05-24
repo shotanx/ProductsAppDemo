@@ -76,6 +76,7 @@ export class AddProductPopupComponent implements OnInit {
         console.log("test15");
 
         if (this.dataForEdit) {
+            dataForSend = { ...dataForSend, id: this.dataForEdit.id }
             this.productService
                 .updateProduct({ ...dataForSend })
                 .subscribe(

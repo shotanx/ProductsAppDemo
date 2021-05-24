@@ -85,6 +85,22 @@ namespace ProductsApp.BLL.Repositories
             return result;
         }
 
+        public async Task<ProductTypeModel> EditProductType(ProductTypeModel model)
+        {
+            var entity = await _unitOfWork.Query<ProductType>().Where(x => x.ID == model.ID && x.DateDeleted == null).SingleAsync();
+            entity.DateChanged = DateTime.Now;
+
+            entity.ProductTypeName = model.ProductTypeName;
+
+            _unitOfWork.Update(entity);
+
+            await _unitOfWork.CommitAsync();
+
+            var result = _mapper.Map<ProductTypeModel>(entity);
+
+            return result;
+        }
+
         public async Task<bool> DeleteProductType(Guid id)
         {
             var models = await GetProductTypes(id);
@@ -173,7 +189,8 @@ namespace ProductsApp.BLL.Repositories
 
         public async Task<ProductModel> UpdateProduct(ProductModel model)
         {
-            var entity = new Product() { ID = model.ID, DateChanged = DateTime.Now };
+            var entity = await _unitOfWork.Query<Product>().Where(x => x.ID == model.ID && x.DateDeleted == null).SingleAsync();
+            entity.DateChanged = DateTime.Now;
 
             _mapper.Map(model, entity);
 
@@ -184,6 +201,17 @@ namespace ProductsApp.BLL.Repositories
             var result = _mapper.Map<ProductModel>(entity);
 
             return result;
+        }
+
+        public async Task<bool> DeleteProduct(Guid id)
+        {
+            var entity = new Product() { ID = id, DateDeleted = DateTime.Now };
+
+            _unitOfWork.SetDateDeleted(entity);
+
+            await _unitOfWork.CommitAsync();
+
+            return true;
         }
     }
 }

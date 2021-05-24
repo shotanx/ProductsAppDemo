@@ -32,9 +32,13 @@ import { MatSortModule } from '@angular/material/sort';
 import { AddProductPopupComponent } from './product/add-product/add-product.component';
 import { AddCountryPopupComponent } from './product/add-country/add-country.component';
 import { DiagramaComponent } from './product/diagrama/diagrama.component';
+import { DeleteProductPopupComponent } from './product/delete-product/delete-product.component';
+import { ProductTypeEditPopupComponent } from './product-type-tree/_popups/product-type-edit-popup/product-type-edit.component';
 
 @NgModule({
   declarations: [
+    ProductTypeEditPopupComponent,
+    DeleteProductPopupComponent,
     DiagramaComponent,
     AddCountryPopupComponent,
     AddProductPopupComponent,

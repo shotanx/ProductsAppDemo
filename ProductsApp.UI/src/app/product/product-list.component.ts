@@ -6,6 +6,8 @@ import { ToastrService } from "ngx-toastr";
 import { ProductTypeComponent } from "../product-type-tree/product-type.component";
 import { ProductService } from "../shared/_services/product.service";
 import { AddProductPopupComponent } from "./add-product/add-product.component";
+import { DeleteProductPopupComponent } from "./delete-product/delete-product.component";
+import { DiagramaComponent } from "./diagrama/diagrama.component";
 
 @Component({
   selector: "app-product-list",
@@ -61,18 +63,19 @@ export class ProductListComponent implements OnInit {
       this.toastr.error("გთხოვთ აირჩიოთ პროდუქტის ტიპი!");
     }
     const data = {
-      selectedProductRow: this.selectedProductRow,
       selectedProductTypeID: this.selectedRow.id
     }
     const dialogRef = this.dialog.open(AddProductPopupComponent, { data });
     dialogRef.afterClosed().subscribe((res) => {
-      console.log("test3");
-      console.log(res);
-      let changedData = this.productListTable.data;
-      changedData.push(res);
-      this.productListTable.data = changedData;
+      if (res) {
+        console.log("test3");
+        console.log(res);
+        let changedData = this.productListTable.data;
+        changedData.push(res);
+        this.productListTable.data = changedData;
 
-      console.log("test3");
+        console.log("test3");
+      }
     });
   }
 
@@ -87,12 +90,42 @@ export class ProductListComponent implements OnInit {
       }
       const dialogRef = this.dialog.open(AddProductPopupComponent, { data });
       dialogRef.afterClosed().subscribe((res) => {
-        let changedData = this.productListTable.data;
-        const index = changedData.indexOf(this.selectedProductRow);
-        changedData[index] = res;
-        this.productListTable.data = changedData;
-        this.selectedProductRow = res;
+        if (res) {
+          let changedData = this.productListTable.data;
+          const index = changedData.indexOf(this.selectedProductRow);
+          changedData[index] = res;
+          this.productListTable.data = changedData;
+          this.selectedProductRow = res;
+        }
       });
     }
+  }
+
+  onDeleteProduct() {
+    if (!this.selectedProductRow) {
+      this.toastr.error("გთხოვთ აირჩიოთ წასაშლელი პროდუქტი!");
+    }
+    if (this.selectedRow) {
+      const dialogRef = this.dialog
+        .open(DeleteProductPopupComponent, {
+          data: {
+            id: this.selectedProductRow.id,
+          },
+        })
+        .afterClosed()
+        .subscribe((res) => {
+          if (res) {
+            let changedData = this.productListTable.data
+            const index = changedData.indexOf(this.selectedProductRow);
+            changedData.splice(index, 1);
+            this.productListTable.data = changedData;
+            this.selectedProductRow = null;
+          }
+        });
+    }
+  }
+
+  openDiagrama() {
+    const dialogRef = this.dialog.open(DiagramaComponent, { data: this.productListTable.data });
   }
 }

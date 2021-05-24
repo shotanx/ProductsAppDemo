@@ -1,40 +1,45 @@
-<div class="wrapper">
-    <mat-card class="popup-card-container">
-        <mat-card-content>
-            <mat-panel-title class="popup-panel">
-                <p class="header-font" style="font-weight: bold">
-                    ქვეყნის დამატება
-                </p>
-            </mat-panel-title>
-            <hr style="margin-bottom: 15px" />
-            <form [formGroup]="addCountryForm">
-                <!-- <mat-form-field
-            class="mat-from-field-wrapper-class"
-            style="margin-top: 5px"
-          >
-            <p>ტექსტი</p>
-          </mat-form-field> -->
-                <mat-form-field class="mat-from-field-wrapper-class" style="margin-top: 5px">
-                    <mat-label>ქვეყნის დასახელება</mat-label>
-                    <input matInput formControlName="countryName" />
-                </mat-form-field>
+<mat-table #table [dataSource]="diagramaSource" class="table table-bordered" striped="true"
+style="overflow: auto">
 
-            </form>
-        </mat-card-content>
+    <ng-container *ngFor="let disCol of displayedColumns; let colIndex = index" matColumnDef="{{disCol}}">
+        <th mat-header-cell *matHeaderCellDef  style="width: 200px; padding: 15px">{{disCol}}</th>
+        <td mat-cell *matCellDef="let element" [ngStyle]="{'background-color': (element[disCol]==true) ? 'rgb(179, 243, 243)' : '#ffffff'}"> {{ getNames(element, disCol) }}
+        </td>
+    </ng-container>
 
-        <mat-card-footer>
-            <div style="display: flex; justify-content: flex-end; margin-top: 30px">
-                <button mat-raised-button color="primary" title="შენახვა" (click)="onSavedClose()"
-                    class="save-green-button" style="margin-right: 10px">
-                    <mat-icon class="material-icons">save</mat-icon>
-                </button>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="testColumns(row)"></tr>
+<!-- 
+    <ng-container *ngFor="let disCol of (columns$ | async); let colIndex = index" matColumnDef="{{disCol}}">
+        <th mat-header-cell *matHeaderCellDef>{{disCol}}</th>
+        <td mat-cell *matCellDef="let element">{{element[disCol]}}</td>
+      </ng-container>
+  
+  
+      <tr mat-header-row *matHeaderRowDef="(columns$ | async)"></tr>
+      <tr mat-row *matRowDef="let row; columns: (columns$ | async)"></tr> -->
+</mat-table>
 
 
-                <button mat-raised-button color="warn" (click)="onClose()" title="დახურვა" class="close-red-button">
-                    <mat-icon class="material-icons">close</mat-icon>
-                </button>
-            </div>
-            <br />
-        </mat-card-footer>
-    </mat-card>
-</div>
+
+
+<!-- <table mat-table [dataSource]="diagramaSource" class="table table-bordered" striped="true"
+    style="width: 100%; margin-top: 10px" matSort matSortDisableClear>
+    <ng-container matColumnDef="productCode">
+        <th mat-header-cell *matHeaderCellDef class="head-body" style="width: 30%" mat-sort-header>
+            კოდი
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.productCode }}</td>
+    </ng-container>
+    <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef class="head-body" style="width: 40%" mat-sort-header>დასახელება</th>
+        <td mat-cell *matCellDef="let row">{{ row.productName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="productPrice">
+        <th mat-header-cell *matHeaderCellDef class="head-body" style="width: 30%" mat-sort-header>ფასი</th>
+        <td mat-cell *matCellDef="let row">{{ row.productPrice }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table> -->

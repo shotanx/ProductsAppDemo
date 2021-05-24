@@ -62,6 +62,20 @@ namespace ProductsApp.API.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> EditProductType(ProductTypeModel model)
+        {
+            try
+            {
+                var result = await _productRepository.EditProductType(model);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetCountries()
         {
@@ -124,6 +138,20 @@ namespace ProductsApp.API.Controllers
             try
             {
                 var result = await _productRepository.UpdateProduct(model);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(Guid id)
+        {
+            try
+            {
+                var result = await _productRepository.DeleteProduct(id);
                 return Ok(result);
             }
             catch (Exception ex)

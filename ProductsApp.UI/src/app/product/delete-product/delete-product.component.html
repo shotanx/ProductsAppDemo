@@ -1,0 +1,38 @@
+<div class="wrapper">
+    <mat-card class="popup-card-container">
+      <mat-card-content>
+        <mat-panel-title class="popup-panel">
+          <p class="header-font" style="text-align: center">
+            ნამდვილად გსურთ პროდუქტის წაშლა?
+          </p>
+        </mat-panel-title>
+      </mat-card-content>
+  
+      <mat-card-footer>
+        <div
+          style="display: flex; justify-content: space-between; margin-top: 30px"
+        >
+          <button
+            mat-raised-button
+            color="accent"
+            title="შენახვა"
+            class="save-green-button"
+            style="margin-right: 10px"
+          >
+            <mat-icon class="material-icons" (click)="yes()">save</mat-icon>
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="no()"
+            title="დახურვა"
+            class="close-red-button"
+          >
+            <mat-icon class="material-icons">close</mat-icon>
+          </button>
+        </div>
+        <br />
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  

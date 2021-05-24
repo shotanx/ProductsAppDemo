@@ -1,0 +1,96 @@
+<div class="wrapper">
+    <mat-card class="popup-card-container">
+      <mat-card-content>
+        <mat-panel-title class="popup-panel">
+          <p class="header-font" style="font-weight: bold">
+            პროდუქტის ტიპის სახელის ცვლილება
+          </p>
+        </mat-panel-title>
+        <hr style="margin-bottom: 15px" />
+        <form
+          [formGroup]="editProductTypeForm"
+        >
+          <!-- <mat-form-field
+            class="mat-from-field-wrapper-class"
+            style="margin-top: 5px"
+          >
+            <p>ტექსტი</p>
+          </mat-form-field> -->
+          <mat-form-field
+            class="mat-from-field-wrapper-class"
+            style="margin-top: 5px"
+          >
+            <mat-label>პროდუქტის ტიპის დასახელება</mat-label>
+            <input matInput formControlName="productTypeName" />
+          </mat-form-field>
+          <br>
+          <!-- <mat-form-field>
+            <mat-label>დან </mat-label>
+            <input
+              matInput
+              [matDatepicker]="startDate"
+              placeholder="თვე/დღე/წელი"
+              formControlName="startDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="startDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #startDate></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>მდე </mat-label>
+            <input
+              matInput
+              [matDatepicker]="endDate"
+              placeholder="თვე/დღე/წელი"
+              formControlName="endDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="endDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #endDate></mat-datepicker>
+          </mat-form-field> -->
+          <!-- <mat-form-field>
+            <mat-label>ქმედება</mat-label>
+            <mat-select formControlName="actionID">
+              <mat-option *ngFor="let action of actions" [value]="action.id">
+                {{ action.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field> -->
+        </form>
+      </mat-card-content>
+  
+      <mat-card-footer>
+        <div style="display: flex; justify-content: flex-end; margin-top: 30px">
+            <button
+              mat-raised-button
+              color="primary"
+              title="შენახვა"
+              (click)="onSavedClose()"
+              class="save-green-button"
+              style="margin-right: 10px"
+            >
+              <mat-icon class="material-icons" 
+                >save</mat-icon
+              >
+            </button>
+
+
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="onClose()"
+            title="დახურვა"
+            class="close-red-button"
+          >
+            <mat-icon class="material-icons">close</mat-icon>
+          </button>
+        </div>
+        <br />
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  
